@@ -1,6 +1,41 @@
+"use client";
+import axios from "axios";
+import CountryCard from "./components/CountryCard";
 import Nav from "./components/Nav";
+import { useEffect, useState } from "react";
+
+type DataCountry = {
+  name: string;
+  population: number;
+  region: string;
+  capital: string;
+};
 
 export default function Home() {
+  const [countryData, setCountryData] = useState<DataCountry>({
+    name: "",
+    population: 0,
+    region: "",
+    capital: "",
+  });
+  useEffect(() => {
+    const countryData = async () => {
+      try {
+        const res = await axios.get(
+          "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
+        );
+        setCountryData((prevData) => ({
+          ...prevData,
+          name: res.data.name,
+        }));
+        console.log(countryData);
+      } catch (err) {
+        console.log("Unable to connect API", err);
+      }
+    };
+    countryData();
+  }, []);
+
   return (
     <main className="min-h-screen">
       <Nav />
@@ -42,6 +77,14 @@ export default function Home() {
             <option>Europe</option>
             <option>Ocenia</option>
           </select>
+        </div>
+        {/* Countries */}
+        <div className="container mx-auto pb-5 grid grid-cols-4 gap-25">
+          <CountryCard />
+          <CountryCard />
+          <CountryCard />
+          <CountryCard />
+          <CountryCard />
         </div>
       </section>
     </main>
