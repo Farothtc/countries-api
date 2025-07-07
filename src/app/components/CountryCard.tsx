@@ -1,19 +1,26 @@
 import Image from "next/image";
 export default function CountryCard() {
   return (
-    <div>
-      <div className="card bg-base-100 w-96 shadow-sm">
-        {/* <Image src={}>
-
-        </Image> */}
+    <div className="col-span-1 flex items-center justify-center">
+      <div className="card bg-white w-full shadow-sm mb-5 ">
+        <Image
+          src={"/germany.png"}
+          alt="Germany"
+          width={400}
+          height={150}
+        ></Image>
         <div className="card-body">
-          <h2 className="card-title">Card Title</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+          <h2 className="card-title">Germany</h2>
+          <div className="flex flex-col justify-start items-start">
+            <h3 className="font-bold">
+              Population: <span className="font-medium">81,770,900</span>
+            </h3>
+            <h3 className="font-bold">
+              Region: <span className="font-medium">Europe</span>
+            </h3>
+            <h3 className="font-bold">
+              Capital: <span className="font-medium">Berlin</span>
+            </h3>
           </div>
         </div>
       </div>
